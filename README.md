@@ -1,9 +1,9 @@
 # Week Planner Card
 
-![GitHub Release](https://img.shields.io/github/v/release/FamousWolf/week-planner-card)
-![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/FamousWolf/week-planner-card/total)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/FamousWolf/week-planner-card)
-![GitHub License](https://img.shields.io/github/license/FamousWolf/week-planner-card)
+![GitHub Release](https://img.shields.io/github/v/release/mjgarve1/week-planner-card-tailored)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/mjgarve1/week-planner-card-tailored/total)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/mjgarve1/week-planner-card-tailored)
+![GitHub License](https://img.shields.io/github/license/mjgarve1/week-planner-card-tailored)
 [![Static Badge](https://img.shields.io/badge/-buy_me_a_tea-gray?logo=buy-me-a-coffee)](https://www.buymeacoffee.com/rudygnodde)
 
 Custom Home Assistant card displaying a responsive overview of multiple days with events from one or multiple calendars
@@ -28,18 +28,18 @@ Custom Home Assistant card displaying a responsive overview of multiple days wit
 ### HACS (Recommended)
 
 1. Make sure [HACS](https://hacs.xyz) is installed and working.
-2. Search for `week-planner-card`.
+2. Search for `week-planner-card-tailored`.
 3. Download and install using HACS.
 
 ### Manual
 
-1. Download and copy `week-planner-card.js` from the [latest release](https://github.com/FamousWolf/week-planner-card/releases/latest) into your `config/www` directory.
+1. Download and copy `week-planner-card-tailored.js` from the [latest release](https://github.com/mjgarve1/week-planner-card-tailored/releases/latest) into your `config/www` directory.
 2. Add the resource reference to Home Assistant configuration using one of these methods:
   - **Edit your configuration.yaml**
     Add:
     ```yaml
     resources:
-      - url: /local/week-planner-card.js?version=1.12.1
+      - url: /local/week-planner-card-tailored.js?version=1.12.1
     type: module
     ```
   - **Using the graphical editor**
@@ -47,7 +47,7 @@ Custom Home Assistant card displaying a responsive overview of multiple days wit
     2. Navigate to "Settings" -> "Dashboards".
     3. Click on the 3 vertical dots in the top right corner and select "Resources".
     4. Click on the "Add resource" button in the bottom right corner.
-    5. Enter URL `/local/week-planner-card.js` and select type "JavaScript Module".
+    5. Enter URL `/local/week-planner-card-tailored.js` and select type "JavaScript Module".
     6. Restart Home Assistant.
 
 
@@ -57,7 +57,7 @@ Custom Home Assistant card displaying a responsive overview of multiple days wit
 
 | Name                     | Type             | Default                                            | Supported options                                                                                                                           | Description                                                                            | Version |
 |--------------------------|------------------|----------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|---------|
-| `type`                   | string           | **Required**                                       | `custom:week-planner-card`                                                                                                                  | Type of the card                                                                       | 1.0.0   |
+| `type`                   | string           | **Required**                                       | `custom:week-planner-card-tailored`                                                                                                                  | Type of the card                                                                       | 1.0.0   |
 | `title`                  | string           | optional                                           | Any string                                                                                                                                  | Card title                                                                             | 1.6.0   |
 | `days`                   | number \| string | 7                                                  | Any positive integer number \| `month`                                                                                                      | The number of days to show                                                             | 1.0.0   |
 | `maxEvents`              | number           | 0                                                  | Any positive integer number                                                                                                                 | The maximum number of events to show (0 is no maximum)                                 | 1.11.0  |
@@ -220,7 +220,7 @@ Like with most cards, you can add custom styling to this card using [card_mod](h
 ### Minimal
 
 ```yaml
-type: custom:week-planner-card
+type: custom:week-planner-card-tailored
 calendars:
   - entity: calendar.my_calendar_1
 ```
@@ -228,7 +228,7 @@ calendars:
 ### Extended
 
 ```yaml
-type: custom:week-planner-card
+type: custom:week-planner-card-tailored
 calendars:
   - entity: calendar.my_calendar_1
     color: '#e6c229'
@@ -253,7 +253,7 @@ texts:
 ### Starting on Sunday
 
 ```yaml
-type: custom:week-planner-card
+type: custom:week-planner-card-tailored
 calendars:
   - entity: calendar.my_calendar_1
     color: '#e6c229'
@@ -269,7 +269,7 @@ texts:
 ### Past events transparent with card_mod
 
 ```yaml
-type: custom:week-planner-card
+type: custom:week-planner-card-tailored
 calendars:
   - entity: calendar.my_calendar_1
     color: '#e6c229'
@@ -287,7 +287,7 @@ card_mod:
 This will style events with `Word1` as part of the title or `Word2` as the exact title with a red background.
 
 ```yaml
-type: custom:week-planner-card
+type: custom:week-planner-card-tailored
 calendars:
   - entity: calendar.my_calendar_1
   - color: #e6c229
@@ -302,7 +302,7 @@ card_mod:
 ### Show entire current month
 
 ```yaml
-type: custom:week-planner-card
+type: custom:week-planner-card-tailored
 calendars:
   - entity: calendar.my_calendar_1
 days: month
@@ -312,7 +312,7 @@ startingDay: month
 ### Show month with each day
 
 ```yaml
-type: custom:week-planner-card
+type: custom:week-planner-card-tailored
 calendars:
   - calendar.my_calendar_1
 dayFormat: '''<span class="number">''d''</span> <span class="month">''MMMM''</span>'''

@@ -1,9 +1,9 @@
 {
-  "name": "week-planner-card",
+  "name": "week-planner-card-tailored",
   "version": "1.12.1",
   "description": "Custom Home Assistant card to display events for a number of days from one or several calendars.",
   "source": "src/index.js",
-  "module": "dist/week-planner-card.js",
+  "module": "dist/week-planner-card-tailored.js",
   "targets": {
     "module": {
       "includeNodeModules": true,
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FamousWolf/week-planner-card.git"
+    "url": "git+https://github.com/mjgarve1/week-planner-card-tailored.git"
   },
   "keywords": [
     "lovelace"
@@ -24,9 +24,9 @@
   "author": "Rudy Gnodde",
   "licence": "MIT",
   "bugs": {
-    "url": "https://github.com/FamousWolf/week-planner-card/issues"
+    "url": "https://github.com/mjgarve1/week-planner-card-tailored/issues"
   },
-  "homepage": "https://github.com/FamousWolf/week-planner-card",
+  "homepage": "https://github.com/mjgarve1/week-planner-card-tailored",
   "devDependencies": {
     "@parcel/optimizer-data-url": "^2.12.0",
     "@parcel/transformer-inline-string": "^2.11.0",

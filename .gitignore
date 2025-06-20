@@ -1,6 +1,6 @@
 .idea/
 .parcel-cache/
 node_modules/
-dist/week-planner-card.js
-dist/week-planner-card.js.map
+dist/week-planner-card-tailored.js
+dist/week-planner-card-tailored.js.map
 

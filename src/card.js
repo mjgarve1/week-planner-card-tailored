@@ -87,6 +87,7 @@ export class WeekPlannerCard extends LitElement {
     _columns;
     _loader;
     _showNavigation;
+    _showMonthOnly;
     _navigationOffset = 0;
     _updateEventsTimeouts = [];
 
@@ -97,7 +98,7 @@ export class WeekPlannerCard extends LitElement {
      */
     static getConfigElement() {
         // Create and return an editor element
-        return document.createElement("week-planner-card-editor");
+        return document.createElement("week-planner-card-tailored-editor");
     }
 
     /**
@@ -164,6 +165,7 @@ export class WeekPlannerCard extends LitElement {
         this._numberOfDays = this._getNumberOfDays(config.days ?? 7);
         this._hideWeekend = config.hideWeekend ?? false;
         this._showNavigation = config.showNavigation ?? false;
+        this._showMonthOnly = config.showMonthOnly ?? true;
         this._startingDay = config.startingDay ?? 'today';
         this._startingDayOffset = config.startingDayOffset ?? 0;
         this._startDate = this._getStartDate();
@@ -313,13 +315,14 @@ export class WeekPlannerCard extends LitElement {
     }
 
     _renderHeader() {
-        if (!this._showLegend && !this._showNavigation) {
+        if (!this._showLegend && !this._showNavigation && !this._showMonthOnly) {
             return html``;
         }
 
         return html`
             <div class="header">
                 ${this._renderNavigation()}
+                ${this._renderMonthOnly()}
                 ${this._renderLegend()}
             </div>
         `;
@@ -365,6 +368,18 @@ export class WeekPlannerCard extends LitElement {
                     <li @click="${this._handleNavigationOriginalClick}"><ha-icon icon="mdi:circle-medium"></ha-icon></li>
                     <li @click="${this._handleNavigationNextClick}"><ha-icon icon="mdi:arrow-right"></ha-icon></li>
                 </ul>
+                <div class="month">${this._startDate.toFormat('MMMM')}</div>
+            </div>
+        `;
+    }
+
+    _renderMonthOnly() {
+        if (!this._showMonthOnly) {
+            return html``;
+        }
+
+        return html`
+            <div class="navigation">
                 <div class="month">${this._startDate.toFormat('MMMM')}</div>
             </div>
         `;

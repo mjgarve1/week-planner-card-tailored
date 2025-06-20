@@ -117,6 +117,7 @@ export class WeekPlannerCardEditor extends LitElement {
                         ${this.addBooleanField('hideTodayWithoutEvents', 'Also hide today without events')}
                         ${this.addTextField('maxDayEvents', 'Maximum number of events per day (0 is no maximum)', 'number', 0)}
                         ${this.addBooleanField('showNavigation', 'Show navigation')}
+                        ${this.addBooleanField('showMonthOnly', 'Show month only')}
                     `
                 )}
                 ${this.addExpansionPanel(
