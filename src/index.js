@@ -1,22 +1,22 @@
-import { WeekPlannerCard } from './card';
-import { WeekPlannerCardEditor } from "./editor";
+import { WeekPlannerCardTailored } from './card';
+import { WeekPlannerCardTailoredEditor } from "./editor";
 import { version } from '../package.json';
 
 customElements.define(
     'week-planner-card-tailored',
-    WeekPlannerCard
+    WeekPlannerCardTailored
 );
 
 window.customCards = window.customCards || [];
 window.customCards.push({
     type: 'week-planner-card-tailored',
-    name: 'Week Planner Card',
-    description: 'Card to display events for a number of days from one or several calendars.'
+    name: 'Week Planner Card Tailored',
+    description: 'My Card to display events for a number of days from one or several calendars.'
 });
 
 customElements.define(
     'week-planner-card-tailored-editor',
-    WeekPlannerCardEditor
+    WeekPlannerCardTailoredEditor
 );
 
 console.info(

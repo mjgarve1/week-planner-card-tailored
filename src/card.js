@@ -49,7 +49,7 @@ const ICONS_NIGHT = {
   'lightning-rainy': storm_night
 };
 
-export class WeekPlannerCard extends LitElement {
+export class WeekPlannerCardTailored extends LitElement {
     static styles = styles;
 
     _initialized = false;
