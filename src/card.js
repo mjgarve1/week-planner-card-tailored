@@ -90,6 +90,7 @@ export class WeekPlannerCardTailored extends LitElement {
     _showMonthOnly;
     _navigationOffset = 0;
     _updateEventsTimeouts = [];
+    _updateStateTimeouts = [];
 
     /**
      * Get config element
@@ -220,6 +221,10 @@ export class WeekPlannerCardTailored extends LitElement {
 
     _isNumberOfDaysMonth(numberOfDays) {
         return numberOfDays === 'month';
+    }
+
+    _isMonthDisplay() {
+        return this.hass.states['input_boolean.test'].state === 'on';
     }
 
     _getWeatherConfig(weatherConfiguration) {
@@ -374,13 +379,13 @@ export class WeekPlannerCardTailored extends LitElement {
     }
 
     _renderMonthOnly() {
-        if (!this._showMonthOnly) {
+        if (!this._isMonthDisplay()) {
             return html``;
         }
 
         return html`
             <div class="navigation">
-                <div class="month">${this._startDate.toFormat('MMMM')}</div>
+                <div class="month">${this._startDate.plus({ days: 7 }).toFormat('MMMM')}</div>
             </div>
         `;
     }
@@ -396,7 +401,7 @@ export class WeekPlannerCardTailored extends LitElement {
                     return html``;
                 }
                 return html`
-                    <div class="day ${day.class}" data-date="${day.date.day}" data-weekday="${day.date.weekday}" data-month="${day.date.month}" data-year="${day.date.year}" data-week="${day.date.weekNumber}">
+                    <div class="day ${day.class}" data-date="${day.date.day}" data-weekday="${day.date.weekday}" data-month="${day.date.month}" data-year="${day.date.year}" data-week="${day.date.weekNumber}"}>
                         <div class="date">
                             ${this._dayFormat ?
                                 unsafeHTML(day.date.toFormat(this._dayFormat)) :
@@ -714,6 +719,29 @@ export class WeekPlannerCardTailored extends LitElement {
         }
 
         this._updateEvents();
+        this._updateStates();
+    }
+
+    _updateStates() {
+        this._updateStateTimeouts.forEach(timeout => {
+            clearTimeout(timeout);
+        });
+
+        let current = parseInt(this.hass.states['input_number.test2'].state);
+
+        if(!(this._navigationOffset === current))
+        {
+            this._navigationOffset = current;
+            this._updateEvents();
+        }
+
+        
+
+        this._updateStateTimeouts.push(
+                    window.setTimeout(() => {
+                        this._updateStates();
+                    }, 1000)
+                );
     }
 
     _subscribeToWeatherForecast() {
@@ -1042,13 +1070,13 @@ export class WeekPlannerCardTailored extends LitElement {
     }
 
     _getWeekDayText(date) {
-        if (this._language.today && this._isToday(date)) {
-            return this._language.today;
-        } else if (this._language.tomorrow && this._isTomorrow(date)) {
-            return this._language.tomorrow;
-        } else if (this._language.yesterday && this._isYesterday(date)) {
-            return this._language.yesterday;
-        } else {
+        //if (this._language.today && this._isToday(date)) {
+        //    return this._language.today;
+        //} else if (this._language.tomorrow && this._isTomorrow(date)) {
+        //    return this._language.tomorrow;
+        //} else if (this._language.yesterday && this._isYesterday(date)) {
+        //    return this._language.yesterday;
+        //} else {
             const weekDays = [
                 this._language.sunday,
                 this._language.monday,
@@ -1061,7 +1089,7 @@ export class WeekPlannerCardTailored extends LitElement {
             ];
             const weekDay = date.weekday;
             return weekDays[weekDay];
-        }
+        //}
     }
 
     _handleContainerClick(e) {
@@ -1189,6 +1217,7 @@ export class WeekPlannerCardTailored extends LitElement {
                 break;
             case 'month':
                 startDate = startDate.startOf('month');
+                startDate = this._getWeekDayDate(startDate, 7);
                 break;
         }
 
